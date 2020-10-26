@@ -14,12 +14,13 @@ end
 
 # ╔═╡ f5aa34b0-167c-11eb-3c92-cfd242732c90
 md"""
-video: https://www.youtube.com/watch?v=YXGUGSAv09A&list=PLgnQpQtFTOGQ7eZU0tzmyjSV5w5lt28p8&index=4
+# This is a note for 3D Coordinates and Representations of Rotations (Cyrill Stachniss, 2020):
+https://www.youtube.com/watch?v=YXGUGSAv09A&list=PLgnQpQtFTOGQ7eZU0tzmyjSV5w5lt28p8&index=4
 """
 
 # ╔═╡ e06143ec-1171-11eb-0c7b-6f679044b95a
-struct Point
-	coord::AbstractVector
+struct Point{T}
+	coord::AbstractVector{T}
 end
 
 # ╔═╡ 9e62c0d4-128d-11eb-3954-1175756cb87d
@@ -33,24 +34,24 @@ struct AxisAngle
 end
 
 # ╔═╡ 3a73228a-14e0-11eb-0a4d-bbf949a0316b
-md"Two properties of rotation matrix: det(r) == 1; inv(r) == transpose(r)"
+md"##### Two properties of rotation matrix: det(r) == 1; inv(r) == transpose(r)"
 
 # ╔═╡ 7575ff78-163a-11eb-0285-0788b2e5d43b
-md"The order of yaw, pitch, and roll matters"
+md"##### The order of yaw, pitch, and roll matters"
 
 # ╔═╡ 32a8b1d6-163a-11eb-0ed0-696834bdb3e5
-md"θ=0 is a singular point for transforming between axis angle and rotation matrix"
+md"##### θ=0 is a singular point for transforming between axis angle and rotation matrix"
 
 # ╔═╡ 7393bc30-1640-11eb-3811-89593e6ce6f8
-md"""cosβ=0 i.e. β=+-90 is a singularity ("Glimbal Lock")"""
+md"""##### cosβ=0 i.e. β=+-90 is a singularity ("Glimbal Lock")"""
 
 # ╔═╡ b3dc7562-163f-11eb-3b5d-dbba1933d002
-md"Euler angles are unique given a rotation matrix, if the angle is in range -π to π. The rotation matrix is unique given euler angles"
+md"##### Euler angles are unique given a rotation matrix, if the angle is in range -π to π. The rotation matrix is unique given euler angles"
 
 # ╔═╡ 784fa84e-1675-11eb-3591-f7ad857e2638
 md"""
-Both Euler Angles and Axis angle has singularities and discountinuities (2π and 0 are the same, this may screw up the gradients).
-Similar to Rotation Matrix, Quaternion has no singularities or discountinuities. Plus Quaternion only has 4 parameters compared to 9 parameters in Rotation Matrix. Quaternions are almost minimal
+##### Both Euler Angles and Axis angle has singularities and discountinuities (2π and 0 are the same, this may screw up the gradients).
+##### Similar to Rotation Matrix, Quaternion has no singularities or discountinuities. Plus Quaternion only has 4 parameters compared to 9 parameters in Rotation Matrix. Quaternions are almost minimal
 """
 
 # ╔═╡ 881043b4-1626-11eb-156f-4535bcb9baa7
@@ -190,7 +191,7 @@ function to_quaternion(a::AxisAngle)::Quaternion
 	θ = norm(a.r)
 	r = a.r/θ
 	Quaternion(cos(θ/2), sin(θ/2).*r)
-end	
+end
 
 # ╔═╡ 82ec8004-1172-11eb-2a04-b516d8620b1a
 begin
@@ -225,7 +226,7 @@ function scale(p::Point, λ::Number)
 end
 
 # ╔═╡ Cell order:
-# ╠═f5aa34b0-167c-11eb-3c92-cfd242732c90
+# ╟─f5aa34b0-167c-11eb-3c92-cfd242732c90
 # ╠═18fdb1ae-14e2-11eb-31ec-61303c211cbb
 # ╠═e06143ec-1171-11eb-0c7b-6f679044b95a
 # ╠═9e62c0d4-128d-11eb-3954-1175756cb87d
@@ -242,7 +243,7 @@ end
 # ╠═753e5bd0-163b-11eb-12fd-059fd1243f19
 # ╠═680cffa6-11b1-11eb-340c-854809b66558
 # ╠═170c1c16-1634-11eb-0723-c96d2ee0f605
-# ╠═b3dc7562-163f-11eb-3b5d-dbba1933d002
+# ╟─b3dc7562-163f-11eb-3b5d-dbba1933d002
 # ╠═86fbb332-163f-11eb-25f3-6ddfd26bb1e3
 # ╟─784fa84e-1675-11eb-3591-f7ad857e2638
 # ╠═881043b4-1626-11eb-156f-4535bcb9baa7

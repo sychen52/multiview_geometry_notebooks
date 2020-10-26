@@ -19,18 +19,18 @@ https://www.youtube.com/watch?v=YXGUGSAv09A&list=PLgnQpQtFTOGQ7eZU0tzmyjSV5w5lt2
 """
 
 # ╔═╡ e06143ec-1171-11eb-0c7b-6f679044b95a
-struct Point{T}
+struct Point{T<:Number}
 	coord::AbstractVector{T}
 end
 
 # ╔═╡ 9e62c0d4-128d-11eb-3954-1175756cb87d
-struct EulerAngle
-	θ::AbstractVector
+struct EulerAngle{T<:Number}
+	θ::AbstractVector{T}
 end
 
 # ╔═╡ 4de2b1b8-128e-11eb-08f7-ef7b65cf1517
-struct AxisAngle
-	r::AbstractVector
+struct AxisAngle{T<:Number}
+	r::AbstractVector{T}
 end
 
 # ╔═╡ 3a73228a-14e0-11eb-0a4d-bbf949a0316b
@@ -84,11 +84,11 @@ function assert_rotation_matrix(m::AbstractArray)
 end
 
 # ╔═╡ 27ba5326-11ba-11eb-00ad-8d7529740c52
-struct Rotation
-	matrix::AbstractMatrix
-	function Rotation(m::AbstractMatrix)
+struct Rotation{T<:Number}
+	matrix::AbstractMatrix{T}
+	function Rotation(m::AbstractMatrix{T}) where {T}
 		assert_rotation_matrix(m)
-		new(m)
+		new{T}(m)
 	end
 end
 

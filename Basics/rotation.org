@@ -1,0 +1,13 @@
+I check the Rotation.jl package, and here is the difference I noticed:
+
+* More complete
+They have a lot more stuff defined for each type of rotation, and they also have more rotation types, for example, they have two types for axis angle: RotationVec and AngleAxis.
+
+* StaticArray instead of AbstractArray as a super type
+
+* No EuclideanCoord type.
+They use SVector directly
+
+* Introducing Rotation{N, T} as an abstract type
+All other rotation is a subtype of it, e.g. axis angle, RotMatrix...
+

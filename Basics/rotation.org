@@ -1,4 +1,4 @@
-I check the Rotation.jl package, and here is the difference I noticed:
+I check the [[https://github.com/JuliaGeometry/Rotations.jl][Rotation.jl]] package, and here is the difference I noticed:
 
 * More complete
 They have a lot more stuff defined for each type of rotation, and they also have more rotation types, for example, they have two types for axis angle: RotationVec and AngleAxis.
